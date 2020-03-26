@@ -1,0 +1,25 @@
+---
+### Change Log (March 26, 2020)
+---
+- Added the basic core mechanics of the game
+  - Shooting Projectiles
+  - Enemy Damage
+  - Different Type of Gun
+    - Pistol
+  - State Manager
+    - Game State
+    - Menu State
+  - Simple Main Menu
+  - Basic functioning UI Button
+    - Clickable
+  - Image Loaders
+  - Frame Caps
+    - Locked to 60 FPS
+  - Canvas Rendering
+    - Using the basic awt.Canvas Render
+  - Input Managements
+    - Keyboard Event
+    - Mouse Event
+- Added the basic abstract classes
+  - GameObject class
+  - Gun class
