@@ -3,6 +3,7 @@ package dev.jabo.game.states;
 import java.awt.Graphics;
 
 import dev.jabo.game.Game;
+import dev.jabo.game.fx.ParticleSystem;
 import dev.jabo.game.obj.Enemy;
 import dev.jabo.game.obj.GameObject;
 import dev.jabo.game.obj.Player;
@@ -10,10 +11,11 @@ import dev.jabo.game.util.Utility;
 
 public class GameState extends State {
 	
-	public static GameObject gameObjects[] = new GameObject[128];
+	public static GameObject gameObjects[] = new GameObject[1000];
+	public static ParticleSystem particles[] = new ParticleSystem[64];
 	
 	private int currentTimerBetweenEnemySpawn = 0;
-	private int timerBetweenEnemySpawn = 60 * 10;
+	private int timerBetweenEnemySpawn = 90;
 	
 	public GameState(Game game) {
 		super(game);
@@ -23,7 +25,6 @@ public class GameState extends State {
 	
 	public void initialize() {
 		new Player(game, 128, 128, 32, 32);
-		new Enemy(game, 256, 128, 64, 64);
 	}
 	
 	@Override
@@ -43,6 +44,10 @@ public class GameState extends State {
 				continue;
 			gameObject.update();
 		}
+		for(ParticleSystem particle : particles) {
+			if (particle == null) continue;
+			particle.Update();
+		}
 	}
 
 	@Override
@@ -52,5 +57,38 @@ public class GameState extends State {
 				continue;
 			gameObject.render(g);
 		}
+		for(ParticleSystem particle : particles) {
+			if (particle == null) continue;
+			particle.Render(g);
+		}
 	}
+	
+	public static void addParticle(ParticleSystem particle) {
+		for(int i = 0; i < particles.length; i++) {
+			if(particles[i] == null) {
+				particles[i] = particle;
+				break;
+			}
+		}
+	}
+	
+	public static void removeParticle(int id) {
+		for(int i = 0; i < particles.length; i++) {
+			if(particles[i] != null) {
+				if(particles[i].getID() == id) {
+					particles[i] = null;
+				}
+				return;
+			}
+		}
+	}
+	
+	public static int getParticleLength() {
+		int num = 0;
+		for (ParticleSystem particleSystem : particles) {
+			if(particleSystem != null) num++;
+ 		}
+ 		return num;
+	}
+	
 }

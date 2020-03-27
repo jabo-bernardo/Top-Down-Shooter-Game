@@ -1,10 +1,13 @@
 package dev.jabo.game.obj;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
 import dev.jabo.game.Game;
 import dev.jabo.game.Global;
+import dev.jabo.game.fx.ParticleSystem;
+import dev.jabo.game.lib.Vector2;
 import dev.jabo.game.states.GameState;
 import dev.jabo.game.util.Utility;
 
@@ -92,10 +95,35 @@ public class Bullet extends GameObject {
 					// Critical hit?					
 					if(critChance > 0.8f) {
 						damage *= Utility.Random(1.2f, 2.2f);
+						GameState.addParticle(new ParticleSystem(game, 
+								// Particle Type
+								ParticleSystem.TYPE_CIRCULAR,
+								//	Position
+								new Vector2(x, y),
+								// Minimum and maximum size
+								1, 16, 
+								// Minimum and maximum speed
+								1, 6,
+								// Count & Range
+								10, 120, 
+								new Color(255, 150, 50)));
+					} else {
+						GameState.addParticle(new ParticleSystem(game, 
+								// Particle Type
+								ParticleSystem.TYPE_CIRCULAR,
+								//	Position
+								new Vector2(x, y),
+								// Minimum and maximum size
+								1, 16, 
+								// Minimum and maximum speed
+								1, 6,
+								// Count & Range
+								10, 30, 
+								new Color(255, 0, 255)));
 					}
 					
 					enemy.damageBy(damage);
-					
+			
 					// Boom! Delete the bullet
 					Destroy();
 					continue;

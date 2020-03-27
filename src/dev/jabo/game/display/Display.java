@@ -11,7 +11,6 @@ public class Display {
 	private JFrame window;
 	// Rendering Canvas
 	private Canvas canvas;
-
 	// Window Information
 	private String windowTitle;
 	private int windowWidth, windowHeight;

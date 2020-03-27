@@ -8,9 +8,9 @@ public class Pistol extends Gun {
 	
 	public Pistol(Game game) {
 		
-		super(game, 5, 5);
-		setReloadInterval(5);
-		setMaxAmmo(10);
+		super(game, 5, 20);
+		setReloadInterval(0);
+		setMaxAmmo(1000);
 		
 	}
 

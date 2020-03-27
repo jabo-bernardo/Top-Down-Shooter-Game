@@ -6,6 +6,7 @@ import java.awt.image.BufferStrategy;
 import dev.jabo.game.display.Display;
 import dev.jabo.game.input.KeyBoard;
 import dev.jabo.game.input.Mouse;
+import dev.jabo.game.states.DevState;
 import dev.jabo.game.states.GameState;
 import dev.jabo.game.states.MenuState;
 import dev.jabo.game.states.State;
@@ -28,6 +29,7 @@ public class Game implements Runnable {
 	// States
 	private GameState gameState;
 	private MenuState menuState;
+	private DevState devState;
 	
 	// Events 
 	private KeyBoard keyBoard;
@@ -67,9 +69,10 @@ public class Game implements Runnable {
 		// States
 		gameState = new GameState(this);
 		menuState = new MenuState(this);
+		devState = new DevState(this);
 		
 		// Set State
-		State.setState(menuState);
+		State.setState(gameState);
 		
 	}
 	
