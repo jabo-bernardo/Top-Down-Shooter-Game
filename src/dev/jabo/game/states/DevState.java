@@ -19,7 +19,7 @@ public class DevState extends State {
 	
 	public void Initialize() {
 		
-		ps = new ParticleSystem(game, 
+		ps = new ParticleSystem(
 				// Particle Type
 				ParticleSystem.TYPE_CIRCULAR,
 				// Position

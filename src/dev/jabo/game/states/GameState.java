@@ -3,6 +3,7 @@ package dev.jabo.game.states;
 import java.awt.Graphics;
 
 import dev.jabo.game.Game;
+import dev.jabo.game.audio.Audio;
 import dev.jabo.game.fx.ParticleSystem;
 import dev.jabo.game.obj.Enemy;
 import dev.jabo.game.obj.GameObject;
@@ -12,10 +13,12 @@ import dev.jabo.game.util.Utility;
 public class GameState extends State {
 	
 	public static GameObject gameObjects[] = new GameObject[1000];
-	public static ParticleSystem particles[] = new ParticleSystem[64];
+	public static ParticleSystem particles[] = new ParticleSystem[1000];
 	
 	private int currentTimerBetweenEnemySpawn = 0;
-	private int timerBetweenEnemySpawn = 90;
+	private int timerBetweenEnemySpawn = 60 * 1;
+	
+	private Audio sampleBG = new Audio("res/audio/gun_shot.wav");
 	
 	public GameState(Game game) {
 		super(game);
@@ -25,6 +28,10 @@ public class GameState extends State {
 	
 	public void initialize() {
 		new Player(game, 128, 128, 32, 32);
+		new Enemy(game, 256, 360, 32, 32);
+		new Enemy(game, 360, 360, 32, 32);
+		
+		
 	}
 	
 	@Override

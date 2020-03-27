@@ -44,7 +44,7 @@ public class ParticleSystem {
 	 * @param particleRange How far can a particle be
 	 * @param color What color
 	 * */
-	public ParticleSystem(Game game, int particleType, Vector2 position, int minimumSize, int maximumSize, int minimumVelocity, int maximumVelocity, int particleCount, int particleRange, Color color) {
+	public ParticleSystem(int particleType, Vector2 position, int minimumSize, int maximumSize, int minimumVelocity, int maximumVelocity, int particleCount, int particleRange, Color color) {
 		this.game = game;
 		
 		this.type = particleType;

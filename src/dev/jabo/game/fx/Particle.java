@@ -1,7 +1,11 @@
 package dev.jabo.game.fx;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+
+import dev.jabo.game.lib.Vector2;
+import dev.jabo.game.states.GameState;
 
 public class Particle {
 	

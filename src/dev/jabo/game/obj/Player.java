@@ -6,6 +6,7 @@ import java.awt.geom.AffineTransform;
 
 import dev.jabo.game.Game;
 import dev.jabo.game.Global;
+import dev.jabo.game.audio.AudioLoader;
 import dev.jabo.game.input.KeyBoard;
 import dev.jabo.game.states.GameState;
 
@@ -56,7 +57,7 @@ public class Player extends GameObject {
 		if(gunType.isReloading()) {
 			currentReloadInterval++;
 			if(currentReloadInterval >= gunType.getReloadInterval()) {
-				gunType.reload(1);				
+				gunType.reload(1);			
 				currentReloadInterval = 0;
 			}
 			return;
@@ -68,12 +69,14 @@ public class Player extends GameObject {
 		
 		if(gunType.isMagazineEmpty()) {
 			gunType.reload(1);
+			AudioLoader.reload.play();
 			return;
 		}
 		
 		if(keyBoard.isKeyPressed(32)) {
 			if(readyToFire >= gunType.getAttackSpeed()) {
 				shootBullet();
+				AudioLoader.gunShot.play(false);
 				gunType.useBullet(1);
 				readyToFire = 0;
 			}

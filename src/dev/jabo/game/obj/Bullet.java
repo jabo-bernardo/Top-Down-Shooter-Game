@@ -6,6 +6,7 @@ import java.awt.Point;
 
 import dev.jabo.game.Game;
 import dev.jabo.game.Global;
+import dev.jabo.game.audio.AudioLoader;
 import dev.jabo.game.fx.ParticleSystem;
 import dev.jabo.game.lib.Vector2;
 import dev.jabo.game.states.GameState;
@@ -95,7 +96,7 @@ public class Bullet extends GameObject {
 					// Critical hit?					
 					if(critChance > 0.8f) {
 						damage *= Utility.Random(1.2f, 2.2f);
-						GameState.addParticle(new ParticleSystem(game, 
+						GameState.addParticle(new ParticleSystem(
 								// Particle Type
 								ParticleSystem.TYPE_CIRCULAR,
 								//	Position
@@ -107,8 +108,10 @@ public class Bullet extends GameObject {
 								// Count & Range
 								10, 120, 
 								new Color(255, 150, 50)));
+						
+						AudioLoader.explode.play();
 					} else {
-						GameState.addParticle(new ParticleSystem(game, 
+						GameState.addParticle(new ParticleSystem( 
 								// Particle Type
 								ParticleSystem.TYPE_CIRCULAR,
 								//	Position
@@ -120,10 +123,12 @@ public class Bullet extends GameObject {
 								// Count & Range
 								10, 30, 
 								new Color(255, 0, 255)));
+						
+						AudioLoader.hurt.play();
 					}
 					
 					enemy.damageBy(damage);
-			
+					
 					// Boom! Delete the bullet
 					Destroy();
 					continue;

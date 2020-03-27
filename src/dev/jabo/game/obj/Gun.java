@@ -3,6 +3,7 @@ package dev.jabo.game.obj;
 import java.awt.Graphics;
 
 import dev.jabo.game.Game;
+import dev.jabo.game.audio.AudioLoader;
 
 public abstract class Gun {
 
@@ -43,7 +44,7 @@ public abstract class Gun {
 	}
 	
 	public void reload(int numberOfAmmo) {
-		if(ammo >= maxAmmo) { ammo = maxAmmo; isReloading = false; return; }
+		if(ammo >= maxAmmo) { ammo = maxAmmo; isReloading = false; AudioLoader.reloaded.play(); return; }
 		isReloading = true;
 		ammo += numberOfAmmo;
 	}
